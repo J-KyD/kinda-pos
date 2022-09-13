@@ -85,14 +85,16 @@
             evt.preventDefault();
         }
     }
-    
+    p1= 30;
+        p2 = 60;
        var inventory = [
-        ['egg', '3 pcs', 30 ,"<button onclick = 'sabog();' class='btn remove' style='background-color:red; color: white;'>button</button>"],
-        ['bread','1 loaf',60, "<button onclick = 'sabog();'class='btn remove' style='background-color:red; color: white;' >button</button>"]
+        ['egg', '3 pcs', p1 ,"<button onclick = 'sabog();' class='btn remove' style='background-color:red; color: white;'>button</button>"],
+        ['bread','1 loaf',p2, "<button onclick = 'sabog();'class='btn remove' style='background-color:red; color: white;' >button</button>"]
        ];
        
        var sum = 0 ,index, table = document.getElementById("table");
-      
+       sum = 0;
+     
        
 
     
@@ -111,7 +113,7 @@
         {
             var cell = newrow.insertCell(column);
             cell.innerHTML = inventory[row][column];
-            document.getElementById("total").innerHTML = boxvalue3;
+         
         }
        }
                     alert("Item Added");
@@ -146,15 +148,16 @@
   
    
         
-    
+       
 
        for(var row = 0; row <inventory.length; row++){
         var newrow = table.insertRow(table.length);
         for (var column = 0; column < inventory[row].length; column++)
         {
             var cell = newrow.insertCell(column);
-            cell.innerHTML = inventory[row][column]
-          
+            cell.innerHTML = inventory[row][column];
+           sum = p1 + p2;
+            document.getElementById("total").innerHTML = sum;
         }
         
        }
