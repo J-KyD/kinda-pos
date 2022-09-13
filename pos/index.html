@@ -102,7 +102,7 @@
        function functions() {
          boxvalue1 = document.getElementById('box1').value;
           boxvalue2 = document.getElementById('box2').value;
-          boxvalue3 = document.getElementById('box3').value;
+          boxvalue3 = parseInt(document.getElementById('box3').value);
         
          inventory.push([boxvalue1, boxvalue2, boxvalue3, "<button onclick = 'sabog();'class='btn remove' style='background-color:red; color: white;' >button</button>"]);
          if(boxvalue1 && boxvalue2 && boxvalue3){
@@ -113,7 +113,10 @@
         {
             var cell = newrow.insertCell(column);
             cell.innerHTML = inventory[row][column];
-         
+            
+            var tol = document.getElementById("total").value = sum + boxvalue3;
+      
+            document.getElementById("total").innerHTML = tol;
         }
        }
                     alert("Item Added");
@@ -139,6 +142,7 @@
             table.rows[row].cells[3].onclick = function(){
                 index = this.parentElement.rowIndex;
                 table.deleteRow(index);
+             
                 
             }
 
