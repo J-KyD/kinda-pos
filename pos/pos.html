@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> My website</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQxlKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+</head>
+<style>
+    .container{
+        max-width:700px;
+    }
+    *{
+        font-family: sans-serif;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="d-flex flex-row justify-content-start align-items-center">
+        <div class="d-flex flex-column pe-5">
+            <div class="flex-column">
+                <label id="item" for="exampleInputEmail1" class="form-label fw-bold fs-5">Item</label>
+                <input type="text" id="box1"class="form-control">
+                   
+            </div>
+            <div class="d-flex flex-row">
+                <div class="pe-1">
+                    <label for="exampleInputEmail1" class="form-label fw-bold fs-5">Quantity</label>
+                    <input type="text" id="box2" class="form-control">
+                   
+                </div>
+                <div>
+                    <label for="exampleInputEmail1" class="form-label fw-bold fs-5">Price</label>
+                    <input type="text" id="box3" onkeypress="numberonly(event)" class="form-control">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class=""> 
+                <button class="btn btn-lg fw-bold" style="background-color: rgba(22, 221, 22, 0.897);"  onclick="functions();"> <i class="bi bi-plus-circle"></i> Add item</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container my-5">
+    <table id="table" class="table table-hover table-bordered" style="background-color: rgb(64, 186, 216);">
+        <tr class ="table" style="background-color:grey;color:white;">
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+             
+               
+            </table>
+       
+        </div>
+        <div class="container fs-5 fw-bold text-end"> Total: <span id="total">Php  </span></div>  
+      
+   
+       
+        
+
+
+       
+         
+        
+            
+     
+       
+         
+
+     
+    
+    
+    <script>   
+    
+    function numberonly(evt){
+        var ch = String.fromCharCode(evt.which);
+        if(!(/[0-9]/.test(ch))){
+            evt.preventDefault();
+        }
+    }
+    
+       var inventory = [
+        ['egg', '3 pcs', 30 ,"<button onclick = 'sabog();' class='btn remove' style='background-color:red; color: white;'>button</button>"],
+        ['bread','1 loaf',60, "<button onclick = 'sabog();'class='btn remove' style='background-color:red; color: white;' >button</button>"]
+       ];
+       
+       var sum = 0 ,index, table = document.getElementById("table");
+      
+       
+
+    
+
+       function functions() {
+         boxvalue1 = document.getElementById('box1').value;
+          boxvalue2 = document.getElementById('box2').value;
+          boxvalue3 = document.getElementById('box3').value;
+        
+         inventory.push([boxvalue1, boxvalue2, boxvalue3, "<button onclick = 'sabog();'class='btn remove' style='background-color:red; color: white;' >button</button>"]);
+         if(boxvalue1 && boxvalue2 && boxvalue3){
+                if(!isNaN(boxvalue2)&&!isNaN(boxvalue3)){
+                    for(var row = 2; row <inventory.length; row++){
+        var newrow = table.insertRow(table.length);
+        for (var column = 0; column < inventory[row].length; column++)
+        {
+            var cell = newrow.insertCell(column);
+            cell.innerHTML = inventory[row][column];
+            document.getElementById("total").innerHTML = boxvalue3;
+        }
+       }
+                    alert("Item Added");
+                }
+       
+                else{
+                    alert("Invalid number");
+                   
+                }
+            }
+            else{
+                alert("Invalid input");
+               
+            }
+
+         
+            }
+              
+              
+
+    function sabog(){
+        for(var row = 0; row < table.rows.length; row++){
+            table.rows[row].cells[3].onclick = function(){
+                index = this.parentElement.rowIndex;
+                table.deleteRow(index);
+                
+            }
+
+        }
+        
+    }
+  
+   
+        
+    
+
+       for(var row = 0; row <inventory.length; row++){
+        var newrow = table.insertRow(table.length);
+        for (var column = 0; column < inventory[row].length; column++)
+        {
+            var cell = newrow.insertCell(column);
+            cell.innerHTML = inventory[row][column]
+          
+        }
+        
+       }
+       
+        
+
+
+        </script>
+      
+
+</body>
+</html>
